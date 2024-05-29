@@ -168,10 +168,10 @@ This script sets up the training process for your reinforcement learning agent. 
 * **`SaveOnBestTrainingRewardCallback` Class:**
     * Defines a custom callback to save the best model based on training reward.
 * **`make_env(rank, seed=0, delay=1.0)` Function:**
-    * Utility function for creating multiple environments, potentially with different seeds and startup delays.
+    * Utility function for creating multiple environments, with different seeds and startup delays.
 * **Main Training Loop:**
     * Creates the training directory.
-    * Initializes the vectorized environment (potentially using multiple processes) and wraps it with `VecFrameStack` if needed.
+    * Initializes the vectorized environment (using multiple processes) and wraps it with `VecFrameStack` if needed.
     * Selects the appropriate policy network architecture (`CnnPolicy` for visual observations, `MlpPolicy` for numeric observations) based on the chosen observation type.
     * Instantiates the PPO agent with specified hyperparameters.
     * Sets up the `SaveOnBestTrainingRewardCallback`.
@@ -260,7 +260,7 @@ The reward system, through its carefully designed structure, successfully guides
 
 ## Overview
 
-The RLCar demo environment presents a simulated racetrack where a car, potentially controlled by an AI agent, learns to navigate and collect rewards. This document delves into the intricate details of the environment's design and mechanics, emphasizing how they facilitate the learning process.
+The RLCar demo environment presents a simulated racetrack where a car, controlled by an AI reinforcement learning(RL) agent, learns to navigate and collect rewards. This document delves into the intricate details of the environment's design and mechanics, emphasizing how they facilitate the learning process.
 
 ## Core Components
 
