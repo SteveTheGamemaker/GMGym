@@ -248,7 +248,7 @@ In the context of reinforcement learning, this reward system serves as the prima
 
 * **State Space:**  The agent's state can be represented by various observations, including its position on the track, speed, direction, and sensor readings that provide information about the track's layout. 
 
-* **Action Space:**  Depending on the configuration (`actiontype`), the agent can have either a discrete action space (e.g., go forward, backward, turn left, turn right) or a continuous action space (e.g., steering angle and acceleration).
+* **Action Space:**  Depending on the configuration (`actiontype`), the agent can have either a discrete action space (e.g., go forward, backward, turn left, turn right) or a continuous action space (e.g., steering speed/direction and acceleration).
 
 * **Policy Optimization:**  The agent employs a reinforcement learning algorithm, such as Proximal Policy Optimization (PPO) in this demo, to learn an optimal policy. PPO iteratively updates the policy based on the rewards obtained from interacting with the environment. 
 
