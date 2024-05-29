@@ -29,6 +29,8 @@ The demo showcases features like:
 
 This extension is best suited for developers who are comfortable with reinforcement learning concepts, Python programming, and GameMaker Language (GML). A solid grasp of these technologies will enable you to fully harness the potential of the extension and build compelling RL environments within your GameMaker projects.
 
+### Getting Started with the Demo:
+
 To get started with the demo, follow these simple steps:
 
 **Step 1: Preparation**
