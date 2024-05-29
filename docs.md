@@ -99,4 +99,96 @@ This script is called every step and is responsible for updating your game objec
 - **Network Communication:** This documentation assumes basic familiarity with GameMaker's networking functions. Consult the GameMaker documentation for further details on network communication.
 - **Performance:** Sending visual observations can be resource-intensive, especially at higher resolutions. Choose a suitable resolution and consider performance implications when using visual observations.
 
+
+
+## gmgym.py and gmtrain.py
+
+These two Python scripts are designed to work with the GameMaker: Studio 2 Gym Extension, facilitating the training of reinforcement learning agents within GameMaker environments using OpenAI Gym.
+
+### gmgym.py
+
+This script defines the `GameEnv` class, which acts as a bridge between your GameMaker game and the OpenAI Gym environment. 
+
+#### Key Components:
+
+* **`__init__(self, host, initial_port, max_attempts, observationtype, actiontype)`:**
+    * Initializes the environment, attempting to establish a connection with the GameMaker game.
+    * Parameters:
+        * `host`: The IP address of the machine running the GameMaker game.
+        * `initial_port`: The starting port for communication.
+        * `max_attempts`: The maximum number of connection attempts.
+        * `observationtype`: The type of observation space ("Visual" or "Numeric").
+        * `actiontype`: The type of action space ("Discrete" or "Continuous").
+* **`attempt_connection(self)`:**  
+    * Attempts to establish a connection with the GameMaker game on the specified port.
+    * Starts the client process if the connection hasn't been established within the timeout.
+* **`start_server(self)`:** 
+    * Creates and binds a server socket on the specified host and port.
+    * Starts the client process.
+* **`start_client(self, port)`:** 
+    * Starts the GameMaker game executable with appropriate parameters (host, port, observation type, action type, display mode).
+* **`is_connected(self)`:**  
+    * Checks if the connection with the GameMaker game is established.
+* **`send_actions(self, client_socket, actions)`:** 
+    * Sends the chosen actions to the GameMaker game through the socket.
+* **`send_reset(self, client_socket, reset_state)`:** 
+    * Sends a reset signal to the GameMaker game.
+* **`get_info(self, client_socket)`:** 
+    * Receives additional information from the GameMaker game (defined in the `global.info_list`).
+* **`get_observation(self, client_socket)`:**
+    * Receives the observation data (either a numeric list or a visual frame) from the GameMaker game.
+* **`get_screen(self, client_socket)`:** 
+    * Specifically receives and processes visual observation data (a screenshot of the game).
+* **`close_client(self)`:**  
+    * Terminates the client process (the running GameMaker game).
+
+#### Gym Environment Methods:
+
+* **`step(self, action)`:**
+    * Executes a single step in the environment.
+    * Sends the chosen action to the GameMaker game.
+    * Receives and returns the observation, reward, done flag, and additional information.
+* **`reset(self)`:**
+    * Resets the GameMaker game environment and returns the initial observation.
+* **`render(self)`:**
+    * Renders the environment (if visual observation is used).
+* **`close(self)`:**
+    * Closes the environment and terminates the connection.
+
+
+### gmtrain.py
+
+This script sets up the training process for your reinforcement learning agent. It uses the `GameEnv` class defined in `gmgym.py` to interact with the GameMaker game.
+
+#### Key Components:
+
+* **Environment Configuration:**
+    * Sets `observation_type`, `IP`, `firstport`, and `action_type` based on your environment and network setup.
+* **Device Selection:**
+    * Checks for CUDA availability and selects the appropriate device ("cuda" for GPU, "cpu" otherwise).
+* **`SaveOnBestTrainingRewardCallback` Class:**
+    * Defines a custom callback to save the best model based on training reward.
+* **`make_env(rank, seed=0, delay=1.0)` Function:**
+    * Utility function for creating multiple environments, potentially with different seeds and startup delays.
+* **Main Training Loop:**
+    * Creates the training directory.
+    * Initializes the vectorized environment (potentially using multiple processes) and wraps it with `VecFrameStack` if needed.
+    * Selects the appropriate policy network architecture (`CnnPolicy` for visual observations, `MlpPolicy` for numeric observations) based on the chosen observation type.
+    * Instantiates the PPO agent with specified hyperparameters.
+    * Sets up the `SaveOnBestTrainingRewardCallback`.
+    * Starts the training process using `model.learn()`.
+    * Saves the trained model.
+
+
+### How to Use:
+
+1. **Configure `gmgym.py`:** Adjust the action and observation spaces, network settings, and ensure the client executable path is correct.
+2. **Configure `gmtrain.py`:** Set the environment parameters, network settings, and training hyperparameters.
+3. **GameMaker Project:**
+    * Implement the `gym_reset()`, `gym_start()`, and `gym_step()` scripts in your GameMaker project to handle environment logic.
+    * Set up the communication with the Python server using the provided GameMaker Gym Extension.
+4. **Run Training:** Execute `gmtrain.py` to start the training process.
+
+This setup allows you to leverage the power of OpenAI Gym and reinforcement learning to train intelligent agents that can interact with your GameMaker games.
+
 This documentation provides a comprehensive overview of the GameMaker Gym Extension. Remember to adapt the game-specific scripts to your project's needs.
