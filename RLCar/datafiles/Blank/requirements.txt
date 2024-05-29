@@ -1,0 +1,5 @@
+gym==0.21.0
+opencv-python-headless>=4.5.2
+numpy>=1.19.5
+torch>=1.7.1
+stable-baselines3>=1.1.0
