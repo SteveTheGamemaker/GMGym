@@ -4,7 +4,7 @@
 To get started with this extension in your own project, you must delete the contents of the functions inside the 'game specific' scripts folder and replace them with your own appropriate code.
 
 ### 1. oGym Object
-This object manages the communication between GameMaker and a Python reinforcement learning environment (e.g., OpenAI Gym).
+This object manages the communication between GameMaker and a Python reinforcement learning environment (e.g., OpenAI Gym). You should put this in the room that has all your other objects in it. 
 
 #### 1.1. Create Event
 This event initializes variables and establishes the connection with the Python server.
