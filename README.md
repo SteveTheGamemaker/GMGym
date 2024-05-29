@@ -49,7 +49,7 @@ To get started with the demo, follow these simple steps:
 **Step 3: Organizing Files**
 
 * Save your GameMaker project.
-* Locate the 'Demo' included files folder and move the `gmgym` and `gmtrain` scripts into the 'RLCar' folder you created in Step 1.
+* Locate the 'Demo' included files folder (RLCar/datafiles in the repo) and move the `gmgym` and `gmtrain` scripts into the 'RLCar' folder you created in Step 1.
 
 **Step 4: Building and Placing the Executable**
 
