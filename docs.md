@@ -268,7 +268,7 @@ The RLCar demo environment presents a simulated racetrack where a car, controlle
 
 - **Role:**  Defines the boundaries of the racing environment. The car colliding with this object triggers the "off-road" penalty, crucial for teaching the agent to stay on course.
 
-- **Implementation:**  This object is not directly defined in the provided code snippet. However, it's assumed to be a sprite or object with a collision mask that accurately outlines the racetrack's edges.
+- **Implementation:**  This object is an object with a collision mask that accurately outlines the racetrack's edges.
 
 ### 2. The Car (oCar)
 
@@ -286,7 +286,7 @@ The RLCar demo environment presents a simulated racetrack where a car, controlle
     - `move`: Indicates acceleration (1), deceleration (-1), or coasting (0).
     - `turn`:  Indicates the direction and degree of turning, with -1 for left and 1 for right.
     - `onRoad`: A boolean flag indicating whether the car is currently on the track (1) or off-track (0).
-    - `maxsensordistance`: "The max sensor distance should be roughly the size of the longest line you could possibly travel on your track".
+    - `maxsensordistance`: "The max sensor distance should be roughly the size of the longest line you could possibly travel on your track". This is used for normalization.
     - `checks`:  The number of checkpoints successfully collected.
 
 - **Movement Mechanics:**
@@ -302,8 +302,8 @@ The RLCar demo environment presents a simulated racetrack where a car, controlle
 - **Role:**  Serve as reward points scattered along the racetrack. The agent's objective is to collect as many checkpoints as possible while maintaining a safe driving trajectory.
 
 - **Implementation:**
-    - Checkmarks are strategically placed along the racetrack, their position and orientation determined by the `oControl` object during the environment setup. 
-    - They are only visible in the numeric observation mode to avoid cluttering the agent's vision in the visual observation mode.
+    - Checkmarks are strategically placed along the racetrack, their position and orientation determined by the `oControl` object during the environment setup. Path1 is a manually made path along the track that facilitates the creation of these checkmarks.
+    - They are only visible in the numeric observation mode to avoid cluttering the agent's vision in the visual observation mode, as well as the fact that in a numeric observation mode, the agent can also not 'see' the checkmarks.
 
 - **Key Variables:**
     - `activated`:  A boolean flag indicating whether a checkpoint can be collected. Becomes true when the car is near and moving forward.
@@ -311,7 +311,7 @@ The RLCar demo environment presents a simulated racetrack where a car, controlle
 
 - **Reward Logic:**
     - A checkpoint is considered collected when the car collides with it while `activated` is false and the car is moving forward ( `oCar.mySpeed > 0` ).
-    - This specific condition, "Only reward a checkpoint collected when going forward", prevents the agent from exploiting the reward system by simply reversing into checkpoints. 
+    - This specific condition, "Only reward a checkpoint collected when going forward", prevents the agent from over-relying on reversing into checkpoints. 
     - Once collected, a checkpoint's `activated` flag is set to true, and its collision mask is disabled to prevent repeated collection.  An alarm is set to reactivate the checkpoint after a short period. 
 
 ## The control object (oControl)
