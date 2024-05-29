@@ -95,7 +95,7 @@ This script executes once at the beginning of the training process when the firs
 This script is called every step and is responsible for updating your game objects' states. Replace the placeholder code with your game's update logic, ensuring all objects relevant to the reinforcement learning task are updated accordingly.
 
 ### 3. Important Considerations
-- **Game Specific Code:** The `gym_reset()` and `gym_step()` scripts are placeholders and require modification to match your specific game logic.
+- **Game Specific Code:** The `gym_reset()` and `gym_step()` scripts are placeholders from the RLCar demo and require modification to match your specific game logic.
 - **Network Communication:** This documentation assumes basic familiarity with GameMaker's networking functions. Consult the GameMaker documentation for further details on network communication.
 - **Performance:** Sending visual observations can be resource-intensive, especially at higher resolutions. Choose a suitable resolution and consider performance implications when using visual observations.
 
