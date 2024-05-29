@@ -33,15 +33,16 @@ To get started with the demo, follow these simple steps:
 
 **Step 1: Preparation**
 
-* Create a new folder named 'RLCar'.
+* Create a new folder on your computer named 'RLCar'.
 * Ensure you have a Python version compatible with PyTorch (we recommend Python 3.8).
 * Make sure you have all the required packages listed in the `requirements.txt` file(found in the included files once you import the asset in the next step).
 
 **Step 2: Importing Assets**
 
 * Create a new GameMaker project.
-* Import all the objects from the extension, including those found in the 'Demo' and 'OpenAI Gym' folders.
+* Import all the objects from the RLCar folder in the github repo, including those found in the 'Demo' and 'OpenAI Gym' folders.
 * Import `Path1`, `Room1`, all scripts, sprites, and the files from the 'Demo' included files folder.
+* Alternatively, just open the RLCar.yyp file in the RLCar folder in the repo.
 
 **Step 3: Organizing Files**
 
