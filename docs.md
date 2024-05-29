@@ -204,7 +204,7 @@ The reward system is designed to encourage the agent to prioritize both speed an
 
 * **Lap Completion Bonus:** To further incentivize progress, the agent receives an additional bonus that scales with the proportion of the lap completed. This bonus can reach up to 0.5, resulting in a maximum reward of 1 for collecting a checkpoint while completing a full lap. 
 
-* **Off-Road Penalty:**  Straying off the track leads to a negative reward. The penalty is structured to mirror the reward for collecting checkpoints, discouraging the agent from taking shortcuts or driving recklessly. Going off-track results in a base penalty of -0.5, with an additional penalty of up to -0.5 proportional to the progress made in the current lap.
+* **Off-Road Penalty:**  Straying off the track leads to a negative reward. The penalty is structured to mirror the reward for collecting checkpoints, discouraging the agent from taking shortcuts or driving recklessly. Going off-track results in a base penalty of -0.5, with an additional penalty of up to -0.5 proportional to the progress made in the current lap. Going off road also resets the environment.
 
 * **Time-Based Penalty (Timeout):**  To prevent the agent from getting stuck or making minimal progress, a timeout mechanism is implemented. If the agent fails to collect a checkpoint within 500 steps, the episode ends with no reward, prompting the agent to explore more dynamic strategies.
 
@@ -266,7 +266,7 @@ The RLCar demo environment presents a simulated racetrack where a car, controlle
 
 ### 1. The Racetrack (oTrackEdge)
 
-- **Role:**  Defines the boundaries of the racing environment. The car colliding with this object triggers the "off-road" penalty, crucial for teaching the agent to stay on course.
+- **Role:**  Defines the boundaries of the racing environment. The car colliding with this object triggers the "off-road" penalty, as well as an environment reset, crucial for teaching the agent to stay on course. 
 
 - **Implementation:**  This object is an object with a collision mask that accurately outlines the racetrack's edges.
 
@@ -276,7 +276,7 @@ The RLCar demo environment presents a simulated racetrack where a car, controlle
 
 - **Key Variables:**
     - `controlmode`:  Determines whether the car is controlled by the "AI" or a "human" player.
-    - `startx`, `starty`: Store the initial position for potential reset purposes.
+    - `startx`, `starty`: Store the initial position for reset purposes.
     - `sensors`:  The number of distance sensors used for environment perception (default is 32).
     - `mySpeed`:  The car's current speed, influenced by acceleration, deceleration, and maximum speed limits.
     - `maxSpeed`:  The car's upper speed limit.
