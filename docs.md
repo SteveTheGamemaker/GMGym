@@ -37,7 +37,7 @@ This event triggers one step after creation and attempts to connect to the Pytho
 This event triggers after the timeout duration (5 minutes) and ends the game if the client hasn't connected.
 
 #### Async Networking Event
-This event handles communication with the Python server:
+This is the heart of the extension. This event handles communication with the Python server:
 - **Receiving Reset Signal:** Calls `gym_receive_reset()` to handle the reset signal from the server.
 - **First Action Packet:**
   - Sets `global.started` to true.
