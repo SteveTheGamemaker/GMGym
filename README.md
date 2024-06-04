@@ -36,7 +36,7 @@ To get started with the demo, follow these simple steps:
 **Step 1: Preparation**
 
 * Create a new folder on your computer named 'RLCar'.
-* Ensure you have a Python version compatible with PyTorch (we recommend Python 3.8).
+* Ensure you have a Python version compatible with PyTorch (I recommend Python 3.8).
 * Make sure you have all the required packages listed in the `requirements.txt` file(found in the included files once you import the asset in the next step).
 
 **Step 2: Importing Assets**
